@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MTsAU - Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .login-box {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .box-title {
+      background: #007bff;
+      color: #ffffff;
+      padding: 10px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <div class="box-title">Login</div>
+    <form id="loginForm">
+      <div class="mb-3">
+        <label for="idInput" class="form-label">Masukkan ID Anda</label>
+        <input type="text" id="idInput" class="form-control" placeholder="Contoh: 121235110097240001" required>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const id = document.getElementById("idInput").value.trim();
+      if (id) {
+        // Save ID to localStorage and redirect to the student data page
+        localStorage.setItem("userId", id);
+        window.location.href = "data.html"; // Redirect to the student data page
+      } else {
+        alert("Silakan masukkan ID Anda!");
+      }
+    });
+    
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
