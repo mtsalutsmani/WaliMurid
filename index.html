@@ -1,62 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MTsAU - Login</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #f8f9fa;
+    <title>Scan to Access</title>
+    <link rel="icon" type="image/png" href="https://github.com/mtsalutsmani/MTsAU/blob/main/LOGO%20MTS%202024.png?raw=true">
+    <meta property="og:image" content="https://github.com/mtsalutsmani/MTsAU/blob/main/LOGO%20MTS%202024.png?raw=true">
+    <meta property="og:title" content="Scan to Access">
+    <meta property="og:description" content="form hanya dapat diakses melalui barcode.">
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #ffffff;
+    color: rgb(255, 0, 0);
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0; /* Hapus gap */
+}
+
+.message-container {
+    text-align: center;
+    padding: 0; /* Hapus padding */
+    background: transparent;
+}
+
+.message-container img {
+    max-width: 100px;
+}
+
+.message-container h1 {
+    font-size: 2rem;
+    margin: 0; /* Hapus margin */
+}
+
+.message-container p {
+    font-size: 1rem;
+    margin: 0; /* Hapus margin */
+}
+
+video {
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: rotate 4s linear infinite;
+    margin-top: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        gap: 0; /* Hapus gap pada mobile */
     }
-    .login-box {
-      max-width: 400px;
-      margin: 100px auto;
-      padding: 20px;
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    video {
+        max-width: 50%; /* Kurangi lebar maksimum untuk video */
+        height: auto; /* Pastikan proporsi video tetap terjaga */
     }
-    .box-title {
-      background: #007bff;
-      color: #ffffff;
-      padding: 10px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
+
+    .message-container h1 {
+        font-size: 1.5rem;
     }
-  </style>
+
+    .message-container p {
+        font-size: 0.9rem;
+    }
+}
+
+    </style>
 </head>
 <body>
-  <div class="login-box">
-    <div class="box-title">Login</div>
-    <form id="loginForm">
-      <div class="mb-3">
-        <label for="idInput" class="form-label">Masukkan ID Anda</label>
-        <input type="text" id="idInput" class="form-control" placeholder="Contoh: 121235110097240001" required>
-      </div>
-      <div class="d-grid">
-        <button type="submit" class="btn btn-primary">Login</button>
-      </div>
-    </form>
-  </div>
-
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const id = document.getElementById("idInput").value.trim();
-      if (id) {
-        // Save ID to localStorage and redirect to the student data page
-        localStorage.setItem("userId", id);
-        window.location.href = "data.html"; // Redirect to the student data page
-      } else {
-        alert("Silakan masukkan ID Anda!");
-      }
-    });
-    
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('access') && urlParams.get('access') === 'true') {
+            window.location.href = "https://forms.gle/FerRZ5SDRUgWFvdU9";
+        } else {
+            document.body.innerHTML = `
+                <div class="container">
+                    <div class="message-container">
+                        <img src="https://github.com/mtsalutsmani/MTsAU/blob/main/LOGO%20MTS%202024.png?raw=true" alt="Logo MTs">
+                        <h1>Akses Ditolak</h1>
+                        <p>Anda harus memindai barcode untuk mengakses FORM ini.</p>
+                    </div>
+                    <video controls autoplay loop muted>
+                        <source src="https://github.com/mtsalutsmani/MTsAU/blob/main/BARC.mp4?raw=true" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            `;
+        }
+    </script>
 </body>
 </html>
